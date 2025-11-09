@@ -7,7 +7,8 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Brute Force : TC : O(N^2 x K) where k is the length of each String SC : O(N)
+ * Brute Force : TC : O(N^2 x K) where k is the length of each String SC : O(N x
+ * K)
  */
 class Solution {
 	public List<List<String>> groupAnagrams(String[] strs) {
