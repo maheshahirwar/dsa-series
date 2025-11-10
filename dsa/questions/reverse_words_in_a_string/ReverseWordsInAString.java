@@ -6,7 +6,7 @@ package dsa.questions.reverse_words_in_a_string;
 class Solution {
 
 	public String reverseWords(String s) {
-		String[] words = s.split("\\s+");
+		String[] words = s.split("\\s+"); // leadning or trailing or multiple spaces in between
 		/*
 		 * Collections.reverse(Arrays.asList(words)); return String.join(" ", words);
 		 */
@@ -24,9 +24,10 @@ class Solution {
 }
 
 /**
- * Optimized Solution TC : O(N) SC : O(N)
+ * Optimized Solution TC : O(N) SC : O(N), extra space for 'res'
  */
 class OptimizedSolution extends Solution {
+
 	private static final char SPACE = ' ';
 
 	public String reverseWords(String s) {
@@ -60,6 +61,55 @@ class OptimizedSolution extends Solution {
 	}
 }
 
+/**
+ * OptimizedSolution2 TC : O(N) SC : O(1) in-place
+ */
+class OptimizedSolution2 extends Solution {
+
+	private static final char SPACE = ' ';
+
+	public String reverseWords(String s) {
+
+		char[] chars = s.toCharArray();
+
+		// Step 1 : Remove spaces leading or traling
+		int len = 0, i = 0;
+		while (i < chars.length) {
+
+			while (i < chars.length && chars[i] == SPACE)
+				i++;
+
+			if (i < chars.length && len > 0)
+				chars[len++] = SPACE;
+
+			while (i < chars.length && chars[i] != SPACE)
+				chars[len++] = chars[i++];
+		}
+		// Step 2 : Reverse chars array
+		reverse(chars, 0, len - 1);
+
+		// Step 3 : Reverse word i.e. reverse array by each space
+		int start = 0, end = 0;
+		while (end < len) {
+			if (chars[end] == SPACE) {
+				reverse(chars, start, end - 1);
+				start = end + 1;
+			}
+			end++;
+		}
+		reverse(chars, start, end - 1);
+		return new String(chars, 0, len);
+	}
+
+	private void reverse(char[] chars, int i, int j) {
+		while (i <= j) {
+			char ch = chars[i];
+			chars[i++] = chars[j];
+			chars[j--] = ch;
+		}
+	}
+}
+
 public class ReverseWordsInAString {
 
 	public static void main(String[] args) {
@@ -68,6 +118,9 @@ public class ReverseWordsInAString {
 
 		solution = new OptimizedSolution();
 		System.out.println("Optimized Solution :" + solution.reverseWords("   hello  world   "));
+
+		solution = new OptimizedSolution2();
+		System.out.println("Optimized Solution2 :" + solution.reverseWords(" hello    world    "));
 	}
 
 }

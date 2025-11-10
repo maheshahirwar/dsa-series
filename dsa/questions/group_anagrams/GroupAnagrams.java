@@ -7,8 +7,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Brute Force : TC : O(N^2 x K) where k is the length of each String SC : O(N x
- * K)
+ * Brute Force : TC - O(N^2 x M) : SC - O(N)
  */
 class Solution {
 	public List<List<String>> groupAnagrams(String[] strs) {
@@ -51,9 +50,7 @@ class Solution {
 
 /**
  * 
- * OptimizedSolution For n strings, each of length L: O(n × L log L)
- * 
- * SC : O(n × L)
+ * OptimizedSolution TC - O(N × M log M) : SC - O(N × M)
  */
 class OptimizedSolution extends Solution {
 
@@ -75,6 +72,39 @@ class OptimizedSolution extends Solution {
 	}
 }
 
+/**
+ * Optimized Solution : TC - O(N x M) : SC - O(N x M)
+ */
+class OptimizedSolution2 extends Solution {
+
+	public List<List<String>> groupAnagrams(String[] strs) {
+		Map<String, List<String>> map = new HashMap<>();
+		for (String str : strs) {
+			String key = sortKey(str);
+			map.computeIfAbsent(key, k -> new ArrayList<String>()).add(str);
+		}
+		List<List<String>> ans = new ArrayList<>();
+		ans.addAll(map.values());
+		return ans;
+	}
+
+	private String sortKey(String str) {
+		int[] freq = new int[26]; // counts for 'a' to 'z'
+
+		// Step 1: Count frequency
+		for (char ch : str.toCharArray())
+			freq[ch - 'a']++;
+
+		// Step 2: Rebuild sorted string
+		StringBuilder sb = new StringBuilder(str.length());
+		for (int i = 0; i < 26; i++)
+			while (freq[i]-- > 0)
+				sb.append((char) (i + 'a'));
+
+		return sb.toString();
+	}
+}
+
 public class GroupAnagrams {
 
 	public static void main(String[] args) {
@@ -85,6 +115,10 @@ public class GroupAnagrams {
 
 		solution = new OptimizedSolution();
 		System.out.println("OptimizedSolution : Group Anagrams = "
+				+ solution.groupAnagrams(new String[] { "eat", "tea", "tan", "ate", "nat", "bat" }));
+
+		solution = new OptimizedSolution2();
+		System.out.println("OptimizedSolution2 : Group Anagrams = "
 				+ solution.groupAnagrams(new String[] { "eat", "tea", "tan", "ate", "nat", "bat" }));
 	}
 
