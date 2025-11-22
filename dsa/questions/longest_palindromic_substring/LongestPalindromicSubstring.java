@@ -138,23 +138,17 @@ class ManachersAlgorithmSolution extends Solution {
 		// Step 2.2: Expand around each center
 		for (int i = 0; i < n; i++) {
 
-			// Mirror of i around current center
-			int mirror = left + (right - i);
 			int palRadius = 0;
 
 			// Step 2.2a: Initialize dp[i] using mirror value (if within current boundary)
-			if (i < right)
-				palRadius = Math.min(right - i, dp[mirror]);
+			if (i < right) {
+				palRadius = Math.min(right - i, dp[left + (right - i)]);
+			}
 
 			// Step 2.2b: Try to expand around center i
-			int r = i + (palRadius + 1), l = i - (palRadius + 1);
+			palRadius = expandAroundCenter(t, i, palRadius, n);
 
-			while (r < n && l >= 0 && t.charAt(l) == t.charAt(r)) {
-				r++;
-				l--;
-				palRadius++;
-			}
-			// Step 3c: Update left and right boundary if palindrome expands beyond R
+			// Step 2.3: Update left and right boundary if palindrome expands beyond R
 			if (i + palRadius > right) {
 				left = i - palRadius;
 				right = i + palRadius;
@@ -162,6 +156,19 @@ class ManachersAlgorithmSolution extends Solution {
 			}
 		}
 		return dp;
+	}
+
+	private int expandAroundCenter(StringBuilder t, int currentIndex, int palRadius, int n) {
+
+		// Step 2.2c: Find left and right index for expansion
+		int r = currentIndex + (palRadius + 1), l = currentIndex - (palRadius + 1);
+
+		while (r < n && l >= 0 && t.charAt(l) == t.charAt(r)) {
+			r++;
+			l--;
+			palRadius++;
+		}
+		return palRadius;
 	}
 
 	private String longestPalindromicSubstring(int[] dp, String s) {
