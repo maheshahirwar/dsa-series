@@ -30,8 +30,8 @@ public class BinarySearch implements SearchElement {
 	@Override
 	public int search(int[] arr, int target) {
 
-		/* return binarySearchIter(arr, target); */
-		return binarySearchRec(arr, target, 0, arr.length - 1);
+		return binarySearchIter(arr, target);
+//		return binarySearchRec(arr, target, 0, arr.length - 1);
 	}
 
 }

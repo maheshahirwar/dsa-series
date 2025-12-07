@@ -27,7 +27,7 @@ public class QuickSort implements SortingArray {
 			}
 		}
 		int tmp = a[i];
-		a[i] = a[high];
+		a[i] = pivot;
 		a[high] = tmp;
 		return i;
 	}

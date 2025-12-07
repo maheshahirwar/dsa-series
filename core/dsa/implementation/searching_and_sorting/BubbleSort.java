@@ -4,20 +4,23 @@ public class BubbleSort implements SortingArray {
 
 	@Override
 	public void sort(int[] a) {
-		int n = a.length;
-		boolean swapped;
-		for (int i = 0; i < n - 1; i++) {
+		boolean swapped = false;
+
+		for (int i = 0; i < a.length - 1; i++) {
 			swapped = false;
-			for (int j = 0; j < n - 1 - i; j++) {
+			for (int j = 0; j < a.length - 1 - i; j++) {
 				if (a[j] > a[j + 1]) {
-					int tmp = a[j];
+					// swap
+					int temp = a[j];
 					a[j] = a[j + 1];
-					a[j + 1] = tmp;
+					a[j + 1] = temp;
 					swapped = true;
 				}
 			}
-			if (!swapped)
-				break; // optimization
+			// If no two elements were swapped by inner loop, then break
+			if (!swapped) {
+				break;
+			}
 		}
 	}
 

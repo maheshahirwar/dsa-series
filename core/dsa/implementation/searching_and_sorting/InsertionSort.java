@@ -11,7 +11,7 @@ public class InsertionSort implements SortingArray {
 				a[j + 1] = a[j];
 				j--;
 			}
-			a[j + 1] = key;
+			a[j + 1] = key; // insert key at correct position
 		}
 
 	}
