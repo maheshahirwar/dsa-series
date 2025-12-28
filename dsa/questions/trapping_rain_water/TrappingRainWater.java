@@ -48,15 +48,21 @@ class BetterSolution extends Solution {
  * Optimized Solution TC : O(N) SC : O(1)
  */
 class OptimizedSolution extends Solution {
+
 	public int trap(int[] height) {
-		int trappedWater = 0, left = 0, right = height.length - 1, leftMax = 0, rightMax = 0;
+		int left = 0, right = height.length - 1;
+
+		int leftMax = 0, rightMax = 0;
+
+		int trappedWater = 0;
+
 		while (left <= right) {
-			if (leftMax < rightMax) {
-				trappedWater += Math.max(0, leftMax - height[left]);
-				leftMax = Math.max(leftMax, height[left++]);
+			if (leftMax <= rightMax) {
+				leftMax = Math.max(leftMax, height[left]);
+				trappedWater += Math.max(0, leftMax - height[left++]);
 			} else {
-				trappedWater += Math.max(0, rightMax - height[right]);
-				rightMax = Math.max(rightMax, height[right--]);
+				rightMax = Math.max(rightMax, height[right]);
+				trappedWater += Math.max(0, rightMax - height[right--]);
 			}
 		}
 		return trappedWater;
