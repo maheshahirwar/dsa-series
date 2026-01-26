@@ -1,35 +1,31 @@
 package core.dsa.implementation.linkedlist_stack_and_queue;
 
 public class TestMyLinkedList {
-    public static void main(String[] args) {
-        MyLinkedList<String> list = new MyLinkedList<>();
-        System.out.println("Initial size operations...");
-        list.add("a");
-        list.add("b");
-        list.add(null);
-        list.add("d");
+	public static void main(String[] args) {
 
-        System.out.println("get(0): " + list.get(0));
-        System.out.println("get(1): " + list.get(1));
-        System.out.println("get(2): " + list.get(2));
-        System.out.println("get(3): " + list.get(3));
+		MyLinkedList<String> list = new MyLinkedList<>();
+		System.out.println("Initial size operations...\n");
 
-        System.out.println("search(\"b\"): " + list.search("b"));
-        System.out.println("search(null): " + list.search(null));
-        System.out.println("search(\"z\"): " + list.search("z"));
+		list.add("a");
+		list.add("b");
+		list.add(null);
+		list.add("d");
 
-        System.out.println("remove(1): " + list.remove(1));
-        System.out.println("search(\"d\"): " + list.search("d"));
-        System.out.println("remove(0): " + list.remove(0));
-        System.out.println("remove(0): " + list.remove(0));
+		list.forEach(e -> System.out.print("[" + e + "]->"));
+		System.out.println("null");
 
-        try {
-            list.remove(10);
-            System.out.println("ERROR: expected exception for remove(10)");
-        } catch (IndexOutOfBoundsException ex) {
-            System.out.println("Caught expected exception for remove(10): " + ex.getMessage());
-        }
+		System.out.println("search(\"b\"): " + list.search("b"));
+		System.out.println("remove(1): " + list.remove(1));
+		System.out.println("search(\"d\"): " + list.search("d"));
 
-        System.out.println("All tests done");
-    }
+		list.insert(0, "x");
+		list.insert(1, "z");
+
+		list.forEach(e -> System.out.print("[" + e + "]->"));
+		System.out.println("null\n");
+
+		for (String ele : list) {
+			System.out.print("{" + ele + "} ");
+		}
+	}
 }

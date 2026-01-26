@@ -9,4 +9,6 @@ public interface LinkedList<E> {
 	public int search(E target);
 
 	public E remove(int index);
+
+	public void insert(int index, E element);
 }
