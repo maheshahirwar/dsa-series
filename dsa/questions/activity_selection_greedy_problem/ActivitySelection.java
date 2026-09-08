@@ -1,4 +1,6 @@
-import java.util.*;
+package dsa.questions.activity_selection_greedy_problem;
+
+import java.util.Arrays;
 
 class Solution {
     public int activitySelection(int[] start, int[] finish) {

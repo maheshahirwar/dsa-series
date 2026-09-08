@@ -1,4 +1,4 @@
-import java.util.*;
+package dsa.questions.maximum_subarray;
 
 class Solution {
     public int maxSubArray(int[] nums) {

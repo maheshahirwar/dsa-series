@@ -1,3 +1,5 @@
+package dsa.questions.union_find;
+
 class UnionFind {
 
     int[] parent;

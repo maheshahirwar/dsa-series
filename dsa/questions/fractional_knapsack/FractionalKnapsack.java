@@ -1,4 +1,6 @@
-import java.util.*;
+package dsa.questions.fractional_knapsack;
+
+import java.util.Arrays;
 
 class Solution {
     public double fractionalKnapsack(int[] val, int[] wt, int capacity) {
