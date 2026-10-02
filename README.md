@@ -7,15 +7,8 @@ This repo follows a structured learning plan, with phases designed to build your
 
 We are following a custom DSA Sheet that covers hand-picked problems from LeetCode, GeeksforGeeks, and Coding Ninjas, organized by topic and difficulty.
 
-📄 DSA Sheet Link: https://docs.google.com/spreadsheets/d/1khloDN7TalWMACk3yGWilIQqTECDKV4ga7H8QWqnges/edit?usp=sharing
+📄 DSA Sheet Link: https://docs.google.com/spreadsheets/d/1khloDN7TalWMACk3yGWilIQqTECDKV4ga7H8QWqnges/edit?gid=1727065931#gid=1727065931
 
-Each problem includes:
-
-✅ Problem link
-💡 Topic/Concept
-🧩 Difficulty level
-🚀 Phase (learning sequence)
-📝 Status (To Do / Solved / Revisit)
 
 
 🏗️ Learning Phases
