@@ -13,7 +13,8 @@ public class ReverseLinkedListInKGroup {
         head.next.next.next.next = new Node(5);
 
         int k = 2; // reverse in groups of k
-        Node res = solution.reverseKGroup(head, k);
+//        Node res = solution.reverseKGroup(head, k);
+        Node res = solution.reverseKGroupRecursive(head, k);
 
         // print result
         while (res != null) {
@@ -58,5 +59,24 @@ class Solution {
             tail = groupHead;
         }
         return  newHead;
+    }
+
+    public Node reverseKGroupRecursive(Node head, int k) {
+        if(head == null || k==1)return head;
+
+        Node prev = null, curr = head;
+        int count = 0;
+        while(curr!=null && count<k){
+            count++;
+            Node next = curr.next;
+            curr.next = prev;
+            prev = curr;
+            curr = next;
+        }
+
+        if(curr!=null){
+            head.next = reverseKGroupRecursive(curr,k);
+        }
+        return prev;
     }
 }
